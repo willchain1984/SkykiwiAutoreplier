@@ -44,12 +44,13 @@ class Discuz:
         )
 
     def login(self):
-        if self.discuz_login.main():
+        ret = self.discuz_login.main()
+        if ret == True:
             self.session = self.discuz_login.session
             self.formhash = self.discuz_login.post_formhash
             return True
         else:
-            return False
+            return ret
 
     def logout(self):
         return self.discuz_login.logout()
