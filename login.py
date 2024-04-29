@@ -15,7 +15,6 @@ logging.basicConfig(
     format="%(asctime)s %(filename)s %(funcName)s：line %(lineno)d %(levelname)s %(message)s",
 )
 
-
 class Login:
     def __init__(
         self,
@@ -26,7 +25,7 @@ class Login:
         questionid="0",
         answer=None,
         cookies_flag=True,
-        timeout=5,
+        timeout=10,
     ):
         self.session = requests.session()
         self.session.headers.update(

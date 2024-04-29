@@ -1,6 +1,13 @@
 import dashscope
 import random
 from http import HTTPStatus
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    filename="info.log",
+    format="%(asctime)s %(filename)s %(funcName)s：line %(lineno)d %(levelname)s %(message)s",
+)
 
 def tokenizer():
     response = dashscope.Tokenization.call(
@@ -37,7 +44,7 @@ def call_with_messages(command):
         if response.status_code == HTTPStatus.OK:
             return response
         else:
-            print(
+            logging.info(
                 "Request id: %s, Status code: %s, error code: %s, error message: %s"
                 % (
                     response.request_id,
@@ -47,4 +54,4 @@ def call_with_messages(command):
                 )
             )
     except Exception:
-        print("Network Error!")
+        logging.error("Network Error, failed to communicate with the AI interface!")
